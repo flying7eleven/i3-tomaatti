@@ -9,3 +9,6 @@ def script_entry_point():
 
 	# now we can start parsing the supplied arguments
 	parsedArguments = argumentParser.parse_args()
+
+if __name__ == '__main__':
+	script_entry_point()
