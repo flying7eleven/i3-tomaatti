@@ -2,6 +2,7 @@ class Tomaatti(object):
 	def __init__(self):
 		from os.path import expanduser, exists, join
 		from os import makedirs
+		from gettext import bindtextdomain, textdomain
 
 		# ensure the root directory for the configuration files exist
 		self.__config_directory = expanduser('~/.config/tomaatti')
@@ -12,7 +13,8 @@ class Tomaatti(object):
 		self.__config_start_time = join(self.__config_directory, 'start_time.txt')
 
 	def translate_string(self, input_text):
-		return input_text
+		from gettext import gettext
+		return gettext(input_text)
 
 	@property
 	def config_start_time(self):
