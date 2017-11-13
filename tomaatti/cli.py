@@ -11,7 +11,12 @@ def script_entry_point():
 	# now we can start parsing the supplied arguments
 	parsed_arguments = argument_parser.parse_args()
 
-	print('i3', I3Integration.get_block_name())
+	# get an instance of the main class and the alias for the translation function
+	app = Tomaatti()
+	_ = app.translate_string
+
+	# current test output
+	print(_('Click to start pomodoro'))
 
 
 if __name__ == '__main__':

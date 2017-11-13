@@ -11,6 +11,9 @@ class Tomaatti(object):
 		# determine the name of some essential configuration files
 		self.__config_start_time = join(self.__config_directory, 'start_time.txt')
 
+	def translate_string(self, input_text):
+		return input_text
+
 	@property
 	def config_start_time(self):
 		return self.__config_start_time
