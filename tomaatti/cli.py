@@ -1,5 +1,6 @@
 def script_entry_point():
 	from argparse import ArgumentParser
+	from tomaatti import I3Integration
 
 	# define the actual argument parser
 	argumentParser = ArgumentParser(description='Pomodoro timer for i3')
@@ -10,8 +11,8 @@ def script_entry_point():
 	# now we can start parsing the supplied arguments
 	parsedArguments = argumentParser.parse_args()
 
-	# example output
-	print('i3 tomaatti')
+	print('i3 %s', I3Integration.get_block_name())
+
 
 if __name__ == '__main__':
 	script_entry_point()
