@@ -3,3 +3,6 @@
 *.tmp
 *.swp
 .idea/
+build/
+dist/
+*.egg-info/
