@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-	name='Tomaatti for i3',
+	name='tomaatti',
 	version='0.1',
 	description='Pomodoro timer with i3 integration',
 	long_description='Pomodoro timer with i3 integration',
