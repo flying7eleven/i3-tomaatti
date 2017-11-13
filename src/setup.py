@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name='tomaatti',
-	version='0.0.3',
+	version='0.0.4',
 	description='Pomodoro timer with i3 integration',
 	long_description='Pomodoro timer with i3 integration',
 	url='https://github.com/thuetz/i3-tomaatti',
@@ -15,7 +15,7 @@ setup(
 	platforms=['linux'],
 	entry_points={
 		'console_scripts': [
-			'tomaatti = tomaatti.tomaatti:script_entry_point',
+			'tomaatti = tomaatti.cli:script_entry_point',
 		],
 	}
 )
