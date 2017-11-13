@@ -12,5 +12,10 @@ setup(
 	packages=find_packages(),
 	install_requires=[],
 	zip_safe=False,
-	platforms=['linux']
+	platforms=['linux'],
+	entry_points={
+		'console_scripts': [
+			'tomaatti = tomaatti.tomaatti:main',
+		],
+	}
 )
