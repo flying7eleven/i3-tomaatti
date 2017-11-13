@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+def script_entry_point():
 	from argparse import ArgumentParser
 
 	# define the actual argument parser
