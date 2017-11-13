@@ -12,7 +12,7 @@ setup(
 	packages=find_packages(),
 	install_requires=[],
 	zip_safe=False,
-	platforms=['linux'],
+	platforms=['Linux'],
 	entry_points={
 		'console_scripts': [
 			'tomaatti = tomaatti.cli:script_entry_point',
