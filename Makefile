@@ -4,3 +4,5 @@ build: clean
 	python3 setup.py sdist
 clean:
 	rm -rf dist tomaatti.egg-info
+upload:
+	twine upload dist/*
