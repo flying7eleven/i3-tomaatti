@@ -4,7 +4,7 @@ sign: build
 build: clean
 	python3 setup.py sdist
 clean:
-	rm -rf dist tomaatti.egg-info
+	rm -rf dist tomaatti.egg-info build
 upload: sign
 	twine upload dist/*
 install_local: clean
