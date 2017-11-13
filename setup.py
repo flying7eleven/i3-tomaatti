@@ -9,8 +9,6 @@ setup(
 	author_email='tim@huetz.biz',
 	license='GPLv3',
 	packages=['i3-tomaatti'],
-	install_requires=[
-		'argparse',
-	],
+	install_requires=[],
 	zip_safe=False
 )
