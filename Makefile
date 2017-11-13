@@ -10,3 +10,4 @@ upload: sign
 install_local: clean
 	mkdir -p ~/.local/lib/python3.6/site-packages
 	python3 setup.py install --prefix=~/.local
+	make clean
