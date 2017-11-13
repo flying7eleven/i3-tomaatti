@@ -1,6 +1,6 @@
 def script_entry_point():
 	from argparse import ArgumentParser
-	from tomaatti import I3Integration
+	from tomaatti import I3Integration, Tomaatti
 
 	# define the actual argument parser
 	argument_parser = ArgumentParser(description='Pomodoro timer for i3')

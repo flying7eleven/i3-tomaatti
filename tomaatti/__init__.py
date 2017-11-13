@@ -1,3 +1,21 @@
+class Tomaatti(object):
+	def __init__(self):
+		from os.path import expanduser, exists, join
+		from os import makedirs
+
+		# ensure the root directory for the configuration files exist
+		self.__config_directory = expanduser('~/.config/tomaatti')
+		if not exists(self.__config_directory):
+			makedirs(self.__config_directory)
+
+		# determine the name of some essential configuration files
+		self.__config_start_time = join(self.__config_directory, 'start_time.txt')
+
+	@property
+	def config_start_time(self):
+		return self.__config_start_time
+
+
 class I3Integration(object):
 	CLICKED_BUTTON_ENVIRON = 'BLOCK_BUTTON'
 	BLOCK_NAME_ENVIRON = 'BLOCK_NAME'
