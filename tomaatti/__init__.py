@@ -24,23 +24,23 @@ class Tomaatti(object):
 		bindtextdomain('tomaatti', '/path/to/my/language/directory')  # TODO set a correct path
 		textdomain('tomaatti')
 
-	def translate_string(self, input_text):
+	def translate_string(self, input_text) -> str:
 		from gettext import gettext
 		return gettext(input_text)
 
 	@property
-	def is_running(self):
+	def is_running(self) -> bool:
 		return self.__is_running
 
 	@property
-	def current_timer_type(self):
+	def current_timer_type(self) -> int:
 		return self.__timer_type
 
-	def toggle_timer(self):
+	def toggle_timer(self) -> None:
 		self.__is_running = not self.__is_running
 		self.__persist_current_state()
 
-	def __persist_current_state(self):
+	def __persist_current_state(self) -> None:
 		from configparser import ConfigParser
 
 		config = ConfigParser()
@@ -70,7 +70,7 @@ class I3Integration(object):
 	MOUSE_SCROLL_DOWN = 5
 
 	@staticmethod
-	def get_clicked_button():
+	def get_clicked_button() -> int:
 		from os import environ
 		if I3Integration.CLICKED_BUTTON_ENVIRON in environ:
 			try:
@@ -80,11 +80,11 @@ class I3Integration(object):
 		return -1
 
 	@staticmethod
-	def get_block_name():
+	def get_block_name() -> str:
 		from os import environ
 		if I3Integration.BLOCK_NAME_ENVIRON in environ:
 			return environ[I3Integration.BLOCK_NAME_ENVIRON]
-		return None
+		return ''
 
 	@staticmethod
 	def get_block_instance():
