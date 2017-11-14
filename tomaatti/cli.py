@@ -15,8 +15,15 @@ def script_entry_point():
 	app = Tomaatti()
 	_ = app.translate_string
 
+	# toggle the timer if the user performed a right-click
+	if I3Integration.get_clicked_button() == I3Integration.RIGHT_MOUSE_BUTTON:
+		app.toggle_timer()
+
 	# current test output
-	print(_('Click to start pomodoro'))
+	if not app.is_running:
+		print(_('Click to start pomodoro'))
+	else:
+		print(_('Pomodoro timer is running'))
 
 
 if __name__ == '__main__':
