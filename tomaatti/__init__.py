@@ -15,7 +15,6 @@ class Tomaatti(object):
 	def __init__(self):
 		from os.path import expanduser, exists, join
 		from os import makedirs
-		from gettext import bindtextdomain, textdomain
 
 		# initialize some variables
 		self.__is_running = False
@@ -30,12 +29,11 @@ class Tomaatti(object):
 		self.__config_start_time = join(self.__config_directory, 'start_time.txt')
 		self.__config_app_state = join(self.__config_directory, 'application_state.ini')
 
-		# initialize the code for dealing with the translations
+	@staticmethod
+	def translate_string(input_text) -> str:
+		from gettext import gettext, bindtextdomain, textdomain
 		bindtextdomain('tomaatti', '/path/to/my/language/directory')  # TODO set a correct path
 		textdomain('tomaatti')
-
-	def translate_string(self, input_text) -> str:
-		from gettext import gettext
 		return gettext(input_text)
 
 	@property
