@@ -73,8 +73,11 @@ class I3Integration(object):
 	def get_clicked_button():
 		from os import environ
 		if I3Integration.CLICKED_BUTTON_ENVIRON in environ:
-			return environ[I3Integration.CLICKED_BUTTON_ENVIRON]
-		return None
+			try:
+				return int(environ[I3Integration.CLICKED_BUTTON_ENVIRON])
+			except ValueError:
+				return -1
+		return -1
 
 	@staticmethod
 	def get_block_name():
