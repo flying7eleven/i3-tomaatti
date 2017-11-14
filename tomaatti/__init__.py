@@ -12,6 +12,10 @@ class Tomaatti(object):
 		# determine the name of some essential configuration files
 		self.__config_start_time = join(self.__config_directory, 'start_time.txt')
 
+		# initialize the code for dealing with the translations
+		bindtextdomain('tomaatti', '/path/to/my/language/directory')  # TODO set a correct path
+		textdomain('tomaatti')
+
 	def translate_string(self, input_text):
 		from gettext import gettext
 		return gettext(input_text)
