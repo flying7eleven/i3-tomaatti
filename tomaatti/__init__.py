@@ -15,10 +15,7 @@ class Tomaatti(object):
 	def __init__(self):
 		from os.path import expanduser, exists, join
 		from os import makedirs
-
-		# initialize some variables
-		self._is_running = False
-		self._timer_type = Tomaatti.TIMER_TYPE_WORKING
+		from configparser import ConfigParser
 
 		# ensure the root directory for the configuration files exist
 		self._config_directory = expanduser('~/.config/tomaatti')
@@ -26,8 +23,12 @@ class Tomaatti(object):
 			makedirs(self._config_directory)
 
 		# determine the name of some essential configuration files
-		self.__config_start_time = join(self._config_directory, 'start_time.txt')
-		self.__config_app_state = join(self._config_directory, 'application_state.ini')
+		self._config_app_state = join(self._config_directory, 'application_state.ini')
+
+		# if a configuration file exists, read it
+		self._application_config = ConfigParser()
+		if exists(self._config_app_state):
+			self._application_config.read(self._config_app_state)
 
 	@staticmethod
 	def translate_string(input_text) -> str:
@@ -38,25 +39,19 @@ class Tomaatti(object):
 
 	@property
 	def is_running(self) -> bool:
-		return self._is_running
+		return self._application_config.getboolean('timer', 'is_running', fallback=False)
 
 	@property
 	def current_timer_type(self) -> int:
-		return self._timer_type
+		return self._application_config.getboolean('timer', 'mode', fallback=Tomaatti.TIMER_TYPE_WORKING)
 
 	def toggle_timer(self) -> None:
-		self._is_running = not self._is_running
+		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(not self.is_running))
 		self._persist_current_state()
 
 	def _persist_current_state(self) -> None:
-		from configparser import ConfigParser
-
-		config = ConfigParser()
-		config.add_section('timer')
-		config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(self.is_running))
-		config.set('timer', 'mode', str(self._timer_type))
-		with open(self.__config_app_state, 'w') as configfile:
-			config.write(configfile)
+		with open(self._config_app_state, 'w') as configfile:
+			self._application_config.write(configfile)
 
 
 class ConfigHelper(object):
