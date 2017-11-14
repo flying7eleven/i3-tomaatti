@@ -53,7 +53,7 @@ class Tomaatti(object):
 
 class ConfigHelper(object):
 	@staticmethod
-	def bool_to_config_str(input_val):
+	def bool_to_config_str(input_val: bool) -> str:
 		if input_val:
 			return 'yes'
 		return 'no'
@@ -87,8 +87,8 @@ class I3Integration(object):
 		return ''
 
 	@staticmethod
-	def get_block_instance():
+	def get_block_instance() -> str:
 		from os import environ
 		if I3Integration.BLOCK_INSTANCE_ENVIRON in environ:
 			return environ[I3Integration.BLOCK_INSTANCE_ENVIRON]
-		return None
+		return ''
