@@ -17,17 +17,17 @@ class Tomaatti(object):
 		from os import makedirs
 
 		# initialize some variables
-		self.__is_running = False
-		self.__timer_type = Tomaatti.TIMER_TYPE_WORKING
+		self._is_running = False
+		self._timer_type = Tomaatti.TIMER_TYPE_WORKING
 
 		# ensure the root directory for the configuration files exist
-		self.__config_directory = expanduser('~/.config/tomaatti')
-		if not exists(self.__config_directory):
-			makedirs(self.__config_directory)
+		self._config_directory = expanduser('~/.config/tomaatti')
+		if not exists(self._config_directory):
+			makedirs(self._config_directory)
 
 		# determine the name of some essential configuration files
-		self.__config_start_time = join(self.__config_directory, 'start_time.txt')
-		self.__config_app_state = join(self.__config_directory, 'application_state.ini')
+		self.__config_start_time = join(self._config_directory, 'start_time.txt')
+		self.__config_app_state = join(self._config_directory, 'application_state.ini')
 
 	@staticmethod
 	def translate_string(input_text) -> str:
@@ -38,23 +38,23 @@ class Tomaatti(object):
 
 	@property
 	def is_running(self) -> bool:
-		return self.__is_running
+		return self._is_running
 
 	@property
 	def current_timer_type(self) -> int:
-		return self.__timer_type
+		return self._timer_type
 
 	def toggle_timer(self) -> None:
-		self.__is_running = not self.__is_running
-		self.__persist_current_state()
+		self._is_running = not self._is_running
+		self._persist_current_state()
 
-	def __persist_current_state(self) -> None:
+	def _persist_current_state(self) -> None:
 		from configparser import ConfigParser
 
 		config = ConfigParser()
 		config.add_section('timer')
 		config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(self.is_running))
-		config.set('timer', 'mode', str(self.__timer_type))
+		config.set('timer', 'mode', str(self._timer_type))
 		with open(self.__config_app_state, 'w') as configfile:
 			config.write(configfile)
 
