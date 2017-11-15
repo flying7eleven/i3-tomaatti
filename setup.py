@@ -20,7 +20,9 @@ setup(
 	author_email='tim@huetz.biz',
 	license='GPL-3.0',
 	packages=find_packages(),
-	install_requires=[],
+	install_requires=[
+		'easygui'
+	],
 	zip_safe=False,
 	platforms=['Linux'],
 	entry_points={
