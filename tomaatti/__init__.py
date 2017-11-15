@@ -51,7 +51,7 @@ class Tomaatti(object):
 
 	@property
 	def current_timer_type(self) -> int:
-		return self._application_config.getboolean('timer', 'mode', fallback=Tomaatti.TIMER_TYPE_WORKING)
+		return self._application_config.getint('timer', 'mode', fallback=Tomaatti.TIMER_TYPE_WORKING)
 
 	def toggle_timer(self) -> None:
 		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(not self.is_running))
