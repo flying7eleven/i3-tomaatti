@@ -59,7 +59,19 @@ class Tomaatti(object):
 		return TimerType(self._application_config.getint('timer', 'mode', fallback=TimerType.WORKING))
 
 	def toggle_timer(self) -> None:
+		from datetime import datetime, timedelta
+
+		# toggle the current state
 		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(not self.is_running))
+
+		# if we started the timer, set the target time accordingly
+		if self.is_running:
+			current_time = datetime.now()
+			time_period = timedelta(minutes=self.working_period)
+			end_time = current_time + time_period
+			self._application_config.set('timer', 'end_time', str(end_time))
+
+		# save all changes to the configuration file
 		self._persist_current_state()
 
 	def show_message(self, message: str) -> None:
