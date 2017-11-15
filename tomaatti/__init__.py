@@ -58,6 +58,20 @@ class Tomaatti(object):
 	def current_timer_type(self) -> TimerType:
 		return TimerType(self._application_config.getint('timer', 'mode', fallback=TimerType.WORKING))
 
+	@property
+	def end_time(self):
+		from datetime import datetime
+		return self._application_config.get('timer', 'end_time', fallback=str(datetime.now()))
+
+	@property
+	def current_label(self) -> str:
+		if not self.is_running:
+			return 'Click to start pomodoro'
+		else:
+			from datetime import datetime, time
+			time_to_end = datetime.strptime(self.end_time, '%Y-%m-%d %H:%M:%S') - datetime.now()
+			return '{:02}:{:02}'.format(time_to_end.seconds % 3600 // 60, time_to_end.seconds % 60)
+
 	def toggle_timer(self) -> None:
 		from datetime import datetime, timedelta
 
@@ -69,7 +83,7 @@ class Tomaatti(object):
 			current_time = datetime.now()
 			time_period = timedelta(minutes=self.working_period)
 			end_time = current_time + time_period
-			self._application_config.set('timer', 'end_time', str(end_time))
+			self._application_config.set('timer', 'end_time', end_time.strftime('%Y-%m-%d %H:%M:%S'))
 
 		# save all changes to the configuration file
 		self._persist_current_state()

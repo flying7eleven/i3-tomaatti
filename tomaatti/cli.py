@@ -18,19 +18,15 @@ def script_entry_point():
 	# now we can start parsing the supplied arguments
 	parsed_arguments = argument_parser.parse_args()
 
-	# get an instance of the main class and the alias for the translation function
+	# get an instance of the main class
 	app = Tomaatti()
-	_ = Tomaatti.translate_string
 
 	# toggle the timer if the user performed a right-click
 	if I3Integration.get_clicked_button() == I3Integration.RIGHT_MOUSE_BUTTON:
 		app.toggle_timer()
 
-	# current test output
-	if not app.is_running:
-		print(_('Click to start pomodoro'))
-	else:
-		print(_('Pomodoro timer is running'))
+	# print the current label to the console
+	print(app.current_label)
 
 
 if __name__ == '__main__':
