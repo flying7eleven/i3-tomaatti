@@ -42,6 +42,14 @@ class Tomaatti(object):
 		return self._application_config.getboolean('timer', 'is_running', fallback=False)
 
 	@property
+	def working_period(self) -> int:
+		return self._application_config.getint('periods', 'working', fallback=25)
+
+	@property
+	def break_period(self) -> int:
+		return self._application_config.getint('periods', 'break', fallback=5)
+
+	@property
 	def current_timer_type(self) -> int:
 		return self._application_config.getboolean('timer', 'mode', fallback=Tomaatti.TIMER_TYPE_WORKING)
 
