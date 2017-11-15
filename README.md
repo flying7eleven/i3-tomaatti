@@ -18,3 +18,7 @@ TODO
 interval=1
 command=tomaatti
 ```
+TODO
+```
+for_window [title="(?i)tomaatti" class="(?i)tk"] floating enable move position center urgent
+```
