@@ -8,10 +8,15 @@
 # You should have received a copy of the GNU General Public License along with this program. If not,
 # see <http://www.gnu.org/licenses/>.
 
-class Tomaatti(object):
-	TIMER_TYPE_WORKING = 1
-	TIMER_TYPE_BREAK = 2
+from enum import Enum
 
+
+class TimerType(Enum):
+	WORKING = 1,
+	BREAK = 2
+
+
+class Tomaatti(object):
 	def __init__(self):
 		from os.path import expanduser, exists, join
 		from os import makedirs
@@ -51,7 +56,7 @@ class Tomaatti(object):
 
 	@property
 	def current_timer_type(self) -> int:
-		return self._application_config.getint('timer', 'mode', fallback=Tomaatti.TIMER_TYPE_WORKING)
+		return self._application_config.getint('timer', 'mode', fallback=TimerType.WORKING)
 
 	def toggle_timer(self) -> None:
 		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(not self.is_running))
