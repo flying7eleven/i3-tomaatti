@@ -49,6 +49,10 @@ class Tomaatti(object):
 		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(not self.is_running))
 		self._persist_current_state()
 
+	def show_message(self, message: str) -> None:
+		from easygui import msgbox
+		msgbox(message, Tomaatti.translate_string('Tomaatti'))
+
 	def _persist_current_state(self) -> None:
 		with open(self._config_app_state, 'w') as configfile:
 			self._application_config.write(configfile)
