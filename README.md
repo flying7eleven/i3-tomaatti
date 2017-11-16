@@ -22,3 +22,9 @@ TODO
 ```
 for_window [title="(?i)tomaatti" class="(?i)tk"] floating enable move position center urgent
 ```
+
+## FAQ
+
+### The warning that a period ended will just show up if I am on a screen with a i3bar
+If the i3 bar is not visible, the widgets are not triggered. The way the timer is currently implemented there is no way in showing
+that the period ended without a query from the i3 bar itself.
