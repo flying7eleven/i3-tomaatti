@@ -23,7 +23,8 @@ TODO
 interval=1
 command=tomaatti
 ```
-TODO
+
+To ensure that the notification about an ended time periode will displayed correctly, add the following line to your i3 configuration:
 ```
 for_window [title="(?i)tomaatti" class="(?i)tk"] floating enable move position center urgent
 ```
