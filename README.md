@@ -20,7 +20,7 @@ variable and ```~/.local/bin``` in your ```PATH``` environment variable.
 TODO
 ```ini
 [pomodoro]
-interval=1
+interval=5
 command=tomaatti
 ```
 
