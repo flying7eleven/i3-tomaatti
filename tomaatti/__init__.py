@@ -13,7 +13,8 @@ from enum import Enum
 
 class TimerType(Enum):
 	WORKING = 1,
-	BREAK = 2
+	BREAK = 2,
+	UNKNOWN = -1
 
 
 class Tomaatti(object):
@@ -36,7 +37,7 @@ class Tomaatti(object):
 			self._application_config.read(self._config_app_state)
 
 	@staticmethod
-	def translate_string(input_text) -> str:
+	def translate_string(input_text: str) -> str:
 		from gettext import gettext, bindtextdomain, textdomain
 		bindtextdomain('tomaatti', '/path/to/my/language/directory')  # TODO set a correct path
 		textdomain('tomaatti')
@@ -55,13 +56,25 @@ class Tomaatti(object):
 		return self._application_config.getint('periods', 'break', fallback=5)
 
 	@property
-	def current_timer_type(self) -> TimerType:
-		return TimerType(self._application_config.getint('timer', 'mode', fallback=TimerType.WORKING))
+	def current_timer_type(self) -> int:
+		val = self._application_config.getint('timer', 'mode', fallback=1)
+		return val
+
+	@current_timer_type.setter
+	def current_timer_type(self, value: int):
+		self._application_config.set('timer', 'mode', str(value))
+		self._persist_current_state()
 
 	@property
-	def end_time(self):
+	def end_time(self) -> str:
 		from datetime import datetime
 		return self._application_config.get('timer', 'end_time', fallback=str(datetime.now()))
+
+	@property
+	def is_timer_up(self) -> bool:
+		from datetime import datetime
+		time_to_end = datetime.strptime(self.end_time, '%Y-%m-%d %H:%M:%S') - datetime.now()
+		return time_to_end.days < 0
 
 	@property
 	def current_label(self) -> str:
@@ -81,7 +94,10 @@ class Tomaatti(object):
 		# if we started the timer, set the target time accordingly
 		if self.is_running:
 			current_time = datetime.now()
-			time_period = timedelta(minutes=self.working_period)
+			period = self.working_period
+			if 2 == self.current_timer_type:
+				period = self.break_period
+			time_period = timedelta(minutes=period)
 			end_time = current_time + time_period
 			self._application_config.set('timer', 'end_time', end_time.strftime('%Y-%m-%d %H:%M:%S'))
 
@@ -95,6 +111,19 @@ class Tomaatti(object):
 	def _persist_current_state(self) -> None:
 		with open(self._config_app_state, 'w') as configfile:
 			self._application_config.write(configfile)
+
+	def check_state(self):
+		if self.is_running and self.is_timer_up:
+			self.toggle_timer()
+			if 1 == self.current_timer_type:
+				self.show_message('Work period is up!')
+				self.current_timer_type = 2
+			elif 2 == self.current_timer_type:
+				self.show_message('Break period is up!')
+				self.current_timer_type = 1
+			else:
+				self.show_message('ERROR: %s' % str(self.current_timer_type))
+			self.toggle_timer()
 
 
 class ConfigHelper(object):

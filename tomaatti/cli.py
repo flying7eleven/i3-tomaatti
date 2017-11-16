@@ -25,6 +25,9 @@ def script_entry_point():
 	if I3Integration.get_clicked_button() == I3Integration.RIGHT_MOUSE_BUTTON:
 		app.toggle_timer()
 
+	# check the timer state and react to it
+	app.check_state()
+
 	# print the current label to the console
 	print(app.current_label)
 
