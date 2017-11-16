@@ -116,13 +116,13 @@ class Tomaatti(object):
 		if self.is_running and self.is_timer_up:
 			self.toggle_timer()
 			if TimerType.WORKING == self.current_timer_type:
-				self.show_message('Work period is up!')
+				self.show_message(self.translate_string('Work period is up!'))
 				self.current_timer_type = TimerType.BREAK
 			elif TimerType.BREAK == self.current_timer_type:
-				self.show_message('Break period is up!')
+				self.show_message(self.translate_string('Break period is up!'))
 				self.current_timer_type = TimerType.WORKING
 			else:
-				self.show_message('ERROR: %s' % str(self.current_timer_type))
+				self.show_message(self.translate_string('ERROR: %s') % str(self.current_timer_type))
 			self.toggle_timer()
 
 
