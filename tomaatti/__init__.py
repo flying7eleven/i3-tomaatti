@@ -17,6 +17,14 @@ class TimerType(Enum):
 	UNKNOWN = -1
 
 
+class I3ButtonIdentifier(Enum):
+	LEFT_MOUSE_BUTTON = 1,
+	MIDDLE_MOUSE_BUTTON = 2,
+	RIGHT_MOUSE_BUTTON = 3,
+	MOUSE_SCROLL_UP = 4,
+	MOUSE_SCROLL_DOWN = 5,
+
+
 class Tomaatti(object):
 	def __init__(self):
 		from os.path import expanduser, exists, join
