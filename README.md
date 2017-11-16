@@ -5,6 +5,9 @@ regular i3 setup.
 ## Installation
 TODO
 
+### Requirements
+* i3blocks
+
 ### Package installation
 Tomaatti is distributed through PyPI (the Python Package Index). For installing it, just
 type ```sudo pip install tomaatti``` for installing it globally or ```pip install tomaatti --prefix ~/.local```
