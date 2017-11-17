@@ -43,6 +43,8 @@ class Tomaatti(object):
 		self._application_config = ConfigParser()
 		if exists(self._config_app_state):
 			self._application_config.read(self._config_app_state)
+		else:
+			self._create_initial_config()
 
 	@staticmethod
 	def translate_string(input_text: str) -> str:
@@ -156,6 +158,24 @@ class Tomaatti(object):
 			self.current_timer_type = TimerType.WORKING
 		if was_running:
 			self.toggle_timer()
+
+	def _create_initial_config(self):
+		self._application_config.add_section('timer')
+		self._application_config.add_section('periods')
+		self.current_timer_type = TimerType.WORKING
+		self.working_period = 25
+		self.break_period = 5
+		self.toggle_timer()  # two times is...
+		self.toggle_timer()  # ...intentionally
+		self._persist_current_state()
+
+	@break_period.setter
+	def break_period(self, value):
+		self._application_config.set('periods', 'break', str(value))
+
+	@working_period.setter
+	def working_period(self, value):
+		self._application_config.set('periods', 'working', str(value))
 
 
 class ConfigHelper(object):
