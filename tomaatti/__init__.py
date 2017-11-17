@@ -115,7 +115,7 @@ class Tomaatti(object):
 			period = self.working_period
 			if TimerType.BREAK == self.current_timer_type:
 				period = self.break_period
-			time_period = timedelta(seconds=period)
+			time_period = timedelta(minutes=period)
 			end_time = current_time + time_period
 			self._application_config.set('timer', 'end_time', end_time.strftime('%Y-%m-%d %H:%M:%S'))
 
