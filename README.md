@@ -6,9 +6,9 @@ regular i3 setup.
 TODO
 
 ### Requirements
-* python 3.6+
-* i3blocks
-* Tkinter
+* python 3 (`sudo apt install python3-tk`)
+* i3blocks (`sudo apt install i3blocks`)
+* Tkinter (`sudo apt install python3-tk`)
 
 ### Package installation
 Tomaatti is distributed through PyPI (the Python Package Index). For installing it, just
