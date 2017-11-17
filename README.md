@@ -17,15 +17,21 @@ for a local installation. If you chose the local installation, ensure ```~/.loca
 variable and ```~/.local/bin``` in your ```PATH``` environment variable.
 
 ### i3 / i3bar configuration
-TODO
+
+#### i3blocks configuration
+This tool was mainly tested with i3blocks and this should be the primary way of using it. Please ensure in your i3 configuration file that you
+use i3blocks as the block manager for your tool bar:
 ```
 ...
 bar {
-»·······status_command SCRIPT_DIR=~/.config/i3/blocks i3blocks -c ~/.config/i3/i3blocks.conf
+	status_command SCRIPT_DIR=~/.config/i3/blocks i3blocks -c ~/.config/i3/i3blocks.conf
 	...
 }
 ...
 ```
+
+If you confirmed that you can run i3blocks, past the following snipped to your i3blocks configuration. This ensures that you can use
+the pomodoro timer by simply clicking on it in your tool bar:
 
 TODO
 ```ini
@@ -34,7 +40,8 @@ interval=5
 command=tomaatti
 ```
 
-To ensure that the notification about an ended time periode will displayed correctly, add the following line to your i3 configuration:
+Since tomaatti uses Tkinter for showing that a work or break period ended, it is recommended to add the following line to your i3 configuration to ensure the notification
+will be displayed correctly:
 ```
 for_window [title="(?i)tomaatti" class="(?i)tk"] floating enable move position center urgent
 ```
