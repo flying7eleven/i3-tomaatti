@@ -65,12 +65,22 @@ class Tomaatti(object):
 
 	@property
 	def current_timer_type(self) -> TimerType:
-		val = self._application_config.getint('timer', 'mode', fallback=TimerType.WORKING)
-		return TimerType(val)
+		val = self._application_config.getint('timer', 'mode')
+		if 1 == val:
+			return TimerType.WORKING
+		elif 2 == val:
+			return TimerType.BREAK
+		else:
+			return TimerType.UNKNOWN
 
 	@current_timer_type.setter
 	def current_timer_type(self, value: TimerType):
-		self._application_config.set('timer', 'mode', str(value.value))
+		if TimerType.WORKING == value:
+			self._application_config.set('timer', 'mode', '1')
+		elif TimerType.BREAK == value:
+			self._application_config.set('timer', 'mode', '2')
+		else:
+			self._application_config.set('timer', 'mode', '-1')
 		self._persist_current_state()
 
 	@property
@@ -103,9 +113,9 @@ class Tomaatti(object):
 		if self.is_running:
 			current_time = datetime.now()
 			period = self.working_period
-			if 2 == self.current_timer_type:
+			if TimerType.BREAK == self.current_timer_type:
 				period = self.break_period
-			time_period = timedelta(minutes=period)
+			time_period = timedelta(seconds=period)
 			end_time = current_time + time_period
 			self._application_config.set('timer', 'end_time', end_time.strftime('%Y-%m-%d %H:%M:%S'))
 
