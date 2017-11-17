@@ -143,6 +143,18 @@ class Tomaatti(object):
 				self.show_message(self.translate_string('ERROR: %s') % str(self.current_timer_type))
 			self.toggle_timer()
 
+	def switch_mode(self):
+		was_running = False
+		if self.is_running:
+			self.toggle_timer()
+			was_running = True
+		if TimerType.WORKING == self.current_timer_type:
+			self.current_timer_type = TimerType.BREAK
+		else:
+			self.current_timer_type = TimerType.WORKING
+		if was_running:
+			self.toggle_timer()
+
 
 class ConfigHelper(object):
 	@staticmethod

@@ -24,6 +24,8 @@ def script_entry_point():
 	# toggle the timer if the user performed a right-click
 	if I3Integration.get_clicked_button() == I3Integration.RIGHT_MOUSE_BUTTON:
 		app.toggle_timer()
+	elif I3Integration.get_clicked_button() == I3Integration.LEFT_MOUSE_BUTTON:
+		app.switch_mode()
 
 	# check the timer state and react to it
 	app.check_state()
