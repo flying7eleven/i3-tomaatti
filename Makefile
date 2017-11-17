@@ -2,7 +2,7 @@ all: sign
 sign: build
 	gpg -a --detach-sign dist/*
 build: clean
-	python3 setup.py sdist
+	python3 setup.py sdist bdist_wheel bdist_egg
 clean:
 	rm -rf dist tomaatti.egg-info build
 upload: sign
