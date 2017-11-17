@@ -18,6 +18,16 @@ variable and ```~/.local/bin``` in your ```PATH``` environment variable.
 
 ### i3 / i3bar configuration
 TODO
+```
+...
+bar {
+»·······status_command SCRIPT_DIR=~/.config/i3/blocks i3blocks -c ~/.config/i3/i3blocks.conf
+	...
+}
+...
+```
+
+TODO
 ```ini
 [pomodoro]
 interval=5
