@@ -6,7 +6,7 @@ regular i3 setup.
 TODO
 
 ### Requirements
-* python 3 (`sudo apt install python3-tk`)
+* python 3 (`sudo apt install python3`)
 * i3blocks (`sudo apt install i3blocks`)
 * Tkinter (`sudo apt install python3-tk`)
 
