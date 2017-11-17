@@ -17,6 +17,7 @@ for a local installation. If you chose the local installation, ensure ```~/.loca
 variable and ```~/.local/bin``` in your ```PATH``` environment variable.
 
 ### i3 / i3bar configuration
+Currently the only supported configuration is i3blocks.
 
 #### i3blocks configuration
 This tool was mainly tested with i3blocks and this should be the primary way of using it. Please ensure in your i3 configuration file that you
@@ -45,6 +46,13 @@ will be displayed correctly:
 ```
 for_window [title="(?i)tomaatti" class="(?i)tk"] floating enable move position center urgent
 ```
+
+## Usage
+| Action       | What it does                                   |
+|      :-:     |     :-:                                        |
+| Left click   | Switch the timer between work and break period |
+| Middle click | Nothing                                        |
+| Right click  | Start and stop the current timer               |
 
 ## FAQ
 
