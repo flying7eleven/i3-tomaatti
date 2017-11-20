@@ -8,8 +8,12 @@
 # You should have received a copy of the GNU General Public License along with this program. If not,
 # see <http://www.gnu.org/licenses/>.
 
-from .internal.timertype import TimerType
-from .internal.i3buttonidentifier import I3ButtonIdentifier
-from .internal.i3integration import I3Integration
-from .internal.confighelper import ConfigHelper
-from .internal.tomaatti import Tomaatti
+from enum import Enum
+
+
+class I3ButtonIdentifier(Enum):
+	LEFT_MOUSE_BUTTON = 1,
+	MIDDLE_MOUSE_BUTTON = 2,
+	RIGHT_MOUSE_BUTTON = 3,
+	MOUSE_SCROLL_UP = 4,
+	MOUSE_SCROLL_DOWN = 5,
