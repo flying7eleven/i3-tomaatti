@@ -99,7 +99,7 @@ class Tomaatti(object):
 	@property
 	def current_label(self) -> str:
 		# determine a prefix for the bar
-		pefix = ''
+		prefix = ''
 		if self.use_font_awesome:
 			prefix = '&#xf017;  '
 
