@@ -33,6 +33,7 @@ setup(
 		'Environment :: X11 Applications',
 		'Topic :: Desktop Environment :: Window Managers',
 		'Topic :: Utilities',
+		'Development Status :: 3 - Alpha'
 	],
 	entry_points={
 		'console_scripts': [
