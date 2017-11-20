@@ -98,14 +98,17 @@ class Tomaatti(object):
 
 	@property
 	def current_label(self) -> str:
+		# determine a prefix for the bar
+		pefix = ''
+		if self.use_font_awesome:
+			prefix = '&#xf017;  '
+
+		# determine the actual label for the bar
 		if not self.is_running:
-			return 'Click to start pomodoro'
+			return '{}{}'.format(prefix, self.translate_string('Tomaatti'))
 		else:
 			from datetime import datetime, time
 			time_to_end = datetime.strptime(self.end_time, '%Y-%m-%d %H:%M:%S') - datetime.now()
-			prefix = ''
-			if self.use_font_awesome:
-				prefix = '&#xf017;  '
 			return '{}{:02}:{:02}'.format(prefix, time_to_end.seconds % 3600 // 60, time_to_end.seconds % 60)
 
 	def toggle_timer(self) -> None:
