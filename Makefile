@@ -1,6 +1,8 @@
 all: sign
 sign: build
-	gpg -a --detach-sign dist/*
+	gpg -a --detach-sign dist/*.gz
+	gpg -a --detach-sign dist/*.whl
+	gpg -a --detach-sign dist/*.egg
 build: clean
 	python3 setup.py sdist bdist_wheel bdist_egg
 clean:
