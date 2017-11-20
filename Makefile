@@ -1,4 +1,6 @@
 all: sign
+tests:
+	python3 setup.py test
 sign: build
 	gpg -a --detach-sign dist/*.gz
 	gpg -a --detach-sign dist/*.whl
