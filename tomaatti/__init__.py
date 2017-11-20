@@ -103,7 +103,10 @@ class Tomaatti(object):
 		else:
 			from datetime import datetime, time
 			time_to_end = datetime.strptime(self.end_time, '%Y-%m-%d %H:%M:%S') - datetime.now()
-			return '{:02}:{:02}'.format(time_to_end.seconds % 3600 // 60, time_to_end.seconds % 60)
+			prefix = ''
+			if self.use_font_awesome:
+				prefix = '&#xf017;  '
+			return '{}{:02}:{:02}'.format(prefix, time_to_end.seconds % 3600 // 60, time_to_end.seconds % 60)
 
 	def toggle_timer(self) -> None:
 		from datetime import datetime, timedelta
@@ -162,6 +165,7 @@ class Tomaatti(object):
 	def _create_initial_config(self):
 		self._application_config.add_section('timer')
 		self._application_config.add_section('periods')
+		self._application_config.add_section('ui')
 		self.current_timer_type = TimerType.WORKING
 		self.working_period = 25
 		self.break_period = 5
@@ -176,6 +180,18 @@ class Tomaatti(object):
 	@working_period.setter
 	def working_period(self, value):
 		self._application_config.set('periods', 'working', str(value))
+
+	@property
+	def use_font_awesome(self) -> bool:
+		from configparser import NoSectionError, NoOptionError
+		try:
+			return self._application_config.getboolean('ui', 'fontawesome')
+		except (NoSectionError, NoOptionError, ValueError) as e:
+			return False
+
+	@use_font_awesome.setter
+	def use_font_awesome(self, value: bool):
+		self._application_config.set('ui', 'fontawesome', ConfigHelper.bool_to_config_str(value))
 
 
 class ConfigHelper(object):
