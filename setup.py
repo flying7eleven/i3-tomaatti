@@ -25,6 +25,15 @@ setup(
 	],
 	zip_safe=False,
 	platforms=['Linux'],
+	classifiers=[
+		'Programming Language :: Python',
+		'Programming Language :: Python :: 3',
+		'Programming Language :: Python :: 3.6',
+		'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+		'Environment :: X11 Applications',
+		'Topic :: Desktop Environment :: Window Managers',
+		'Topic :: Utilities',
+	],
 	entry_points={
 		'console_scripts': [
 			'tomaatti = tomaatti.cli:script_entry_point',
