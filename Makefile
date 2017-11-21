@@ -1,5 +1,5 @@
 all: sign
-tests:
+tests: clean
 	python3 setup.py test
 sign: build
 	gpg -a --detach-sign dist/*.gz
