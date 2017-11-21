@@ -20,6 +20,7 @@ def script_entry_point():
 
 	# get an instance of the main class
 	app = Tomaatti()
+	app.initialize()
 
 	# toggle the timer if the user performed a right-click
 	if I3Integration.get_clicked_button() == I3Integration.RIGHT_MOUSE_BUTTON:

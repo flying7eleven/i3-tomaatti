@@ -13,7 +13,7 @@ from .confighelper import ConfigHelper
 
 
 class Tomaatti(object):
-	def __init__(self):
+	def initialize(self):
 		from os.path import expanduser, exists, join
 		from os import makedirs
 		from configparser import ConfigParser
