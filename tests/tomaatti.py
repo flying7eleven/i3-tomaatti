@@ -20,5 +20,6 @@ class TomaattiTest(TestCase):
 
 			test_object = Tomaatti()
 			test_object._create_initial_config = MagicMock()
+			test_object.initialize()
 
 			self.assertTrue(test_object._create_initial_config.has_been_called())
