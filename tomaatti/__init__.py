@@ -143,7 +143,7 @@ class Tomaatti(object):
 			self.toggle_timer()
 			if TimerType.WORKING == self.current_timer_type:
 				self.show_message(self.translate_string(
-					"It's time for a break. You worked so hart for the last %d minutes :)" % self.working_period))
+					"It's time for a break. You worked so hard for the last %d minutes :)" % self.working_period))
 				self.current_timer_type = TimerType.BREAK
 			elif TimerType.BREAK == self.current_timer_type:
 				self.show_message(self.translate_string(
