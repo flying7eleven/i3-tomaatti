@@ -14,12 +14,14 @@ from unittest.mock import patch, MagicMock
 
 
 class TomaattiTest(TestCase):
-	def testCreateFullConfigIfItDoesNotExists(self):
-		with patch('os.path.exists') as exists_patch:
-			exists_patch.return_value = False
+	@patch('os.path.exists')
+	@patch('os.makedirs')
+	def testCreateFullConfigIfItDoesNotExists(self, makedirs_patch, patch_exists):
+		patch_exists.return_value = False
+		makedirs_patch.return_value = None
 
-			test_object = Tomaatti()
-			test_object._create_initial_config = MagicMock()
-			test_object.initialize()
+		test_object = Tomaatti()
+		test_object._create_initial_config = MagicMock()
+		test_object.initialize()
 
-			self.assertTrue(test_object._create_initial_config.has_been_called())
+		test_object._create_initial_config.assert_called()
