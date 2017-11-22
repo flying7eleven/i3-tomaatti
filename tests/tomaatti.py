@@ -20,11 +20,16 @@ class TomaattiTest(TestCase):
 		patch_exists.return_value = False
 		makedirs_patch.return_value = None
 
+		config_mock = MagicMock()
+
 		test_object = Tomaatti()
 		test_object._create_initial_config = MagicMock()
-		test_object.initialize()
+		test_object.initialize(config_mock)
 
 		test_object._create_initial_config.assert_called()
+		config_mock.add_section.assert_called_with('timer')
+		config_mock.add_section.assert_called_with('ui')
+		config_mock.add_section.assert_called_with('periods')
 
 	@patch('os.path.exists')
 	def testReadConfigIfItExists(self, patch_exists):
