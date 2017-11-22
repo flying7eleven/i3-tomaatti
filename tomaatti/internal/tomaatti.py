@@ -13,7 +13,7 @@ from .confighelper import ConfigHelper
 
 
 class Tomaatti(object):
-	def initialize(self):
+	def initialize(self, configuration_parser=None):
 		from os.path import expanduser, exists, join
 		from os import makedirs
 		from configparser import ConfigParser
@@ -27,7 +27,10 @@ class Tomaatti(object):
 		self._config_app_state = join(self._config_directory, 'application_state.ini')
 
 		# if a configuration file exists, read it
-		self._application_config = ConfigParser()
+		if configuration_parser:
+			self._application_config = configuration_parser
+		else:
+			self._application_config = ConfigParser()
 		if exists(self._config_app_state):
 			self._application_config.read(self._config_app_state)
 		else:

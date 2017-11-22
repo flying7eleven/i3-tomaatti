@@ -25,3 +25,14 @@ class TomaattiTest(TestCase):
 		test_object.initialize()
 
 		test_object._create_initial_config.assert_called()
+
+	@patch('os.path.exists')
+	def testReadConfigIfItExists(self, patch_exists):
+		patch_exists.return_value = True
+
+		test_object = Tomaatti()
+		test_object._create_initial_config = MagicMock()
+		test_object.initialize(MagicMock())
+
+		test_object._create_initial_config.assert_not_called()
+		test_object._application_config.read.assert_called()
