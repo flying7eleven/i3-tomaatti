@@ -50,9 +50,9 @@ for_window [title="(?i)tomaatti" class="(?i)tk"] floating enable move position c
 ## Usage
 | Action       | What it does                                   |
 |      :-:     |     :-:                                        |
-| Left click   | Switch the timer between work and break period |
+| Left click   | Start and stop the current timer               |
 | Middle click | Nothing                                        |
-| Right click  | Start and stop the current timer               |
+| Right click  | Switch the timer between work and break period |
 
 ## FAQ
 
