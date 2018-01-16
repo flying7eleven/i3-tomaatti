@@ -22,8 +22,7 @@ def script_entry_point():
 	# show the experimental screen overlay if the user requested it
 	if parsed_arguments.screen_overlay:
 		print('Showing screen overlay')
-		overlay = ScreenOverlay()
-		overlay.show_overlay()
+		ScreenOverlay.show_overlay()
 		return
 
 	# get an instance of the main class
