@@ -10,13 +10,21 @@
 
 def script_entry_point():
 	from argparse import ArgumentParser
-	from tomaatti import I3Integration, Tomaatti
+	from tomaatti import I3Integration, Tomaatti, ScreenOverlay
 
 	# define the actual argument parser
 	argument_parser = ArgumentParser(description='Pomodoro timer for i3')
+	argument_parser.add_argument('--screen-overlay', action='store_true', help='Show a full screen overlay (experimental)')
 
 	# now we can start parsing the supplied arguments
 	parsed_arguments = argument_parser.parse_args()
+
+	# show the experimental screen overlay if the user requested it
+	if parsed_arguments.screen_overlay:
+		print('Showing screen overlay')
+		overlay = ScreenOverlay()
+		overlay.show_overlay()
+		return
 
 	# get an instance of the main class
 	app = Tomaatti()
