@@ -8,18 +8,5 @@
 # You should have received a copy of the GNU General Public License along with this program. If not,
 # see <http://www.gnu.org/licenses/>.
 
-__all__ = [
-	'TimerType',
-	'I3ButtonIdentifier',
-	'I3Integration',
-	'ConfigHelper',
-	'Tomaatti',
-	'ScreenOverlay',
-]
-
-from .internal.confighelper import ConfigHelper
-from .internal.experimental import ScreenOverlay
-from .internal.i3buttonidentifier import I3ButtonIdentifier
-from .internal.i3integration import I3Integration
-from .internal.timertype import TimerType
-from .internal.tomaatti import Tomaatti
+class ScreenOverlay(object):
+	pass
