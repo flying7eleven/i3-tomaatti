@@ -24,7 +24,7 @@ def script_entry_point():
 		if ScreenOverlay.is_coposite_manager_running():
 			print('Showing screen overlay')
 			overlay = ScreenOverlay()
-			overlay.show_overlay()
+			overlay.show_overlay('This is an experimental feature of Tomaatti')
 		else:
 			print('Composite manager is not running!')
 		return
