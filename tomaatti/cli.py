@@ -15,6 +15,7 @@ def script_entry_point():
 	# define the actual argument parser
 	argument_parser = ArgumentParser(description='Pomodoro timer for i3')
 	argument_parser.add_argument('--screen-overlay', action='store_true', help='Show a full screen overlay (experimental)')
+	argument_parser.add_argument('--blur-overlay', action='store_true', help='Blur the background of the screen overlay (experimental)')
 
 	# now we can start parsing the supplied arguments
 	parsed_arguments = argument_parser.parse_args()
