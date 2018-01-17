@@ -22,6 +22,7 @@ class ScreenOverlay(object):
 		w.master.geometry('+0+0')
 		w.master.lift()
 		w.master.wm_attributes('-topmost', True)
+		w.master.wm_attributes('-fullscreen', False)
 		w.master.wm_attributes('-alpha', 0.5)
 		w.create_rectangle(0, 0, vw, vh, fill='black')
 		w.pack()
