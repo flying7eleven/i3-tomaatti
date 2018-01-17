@@ -10,7 +10,8 @@
 
 
 class ScreenOverlay(object):
-	def is_coposite_manager_running(self):
+	@staticmethod
+	def is_coposite_manager_running():
 		from subprocess import Popen, PIPE
 		child = Popen(['pgrep', 'xcompmgr'], stdout=PIPE)
 		child.communicate()
@@ -19,25 +20,32 @@ class ScreenOverlay(object):
 		else:
 			return False
 
+	def __init__(self):
+		self._tkinter_root = None
+		self._overlay_canvas = None
+
 	def show_overlay(self):
 		from tkinter import Canvas, Tk
 
-		vw, vh = 600, 350
+		self._tkinter_root = Tk()
 
-		self.root = Tk()
-		self.w = Canvas(width=vw, height=vh, highlightthickness=0)
-		self.w.configure(background='black')
-		self.w.master.overrideredirect(True)
-		self.w.master.geometry('+0+0')
-		self.w.master.lift()
-		self.w.master.wm_attributes('-topmost', True)
-		self.w.master.wm_attributes('-fullscreen', True)
-		self.w.master.wm_attributes('-zoomed', True)
-		self.w.master.wm_attributes('-alpha', 0.5)
-		self.w.create_rectangle(0, 0, vw, vh, fill='black')
-		self.w.bind('<Button-1>', self._close_callback)
-		self.w.pack()
-		self.w.mainloop()
+		screen_width = self._tkinter_root.winfo_screenwidth()
+		screen_height = self._tkinter_root.winfo_screenheight()
 
-	def _close_callback(self, event):
-		self.root.destroy()
+		self._overlay_canvas = Canvas(width=screen_width, height=screen_height, highlightthickness=0)
+		self._overlay_canvas.configure(background='black')
+		self._overlay_canvas.master.overrideredirect(True)
+		self._overlay_canvas.master.geometry('+0+0')
+		self._overlay_canvas.master.lift()
+		self._overlay_canvas.master.wm_attributes('-topmost', True)
+		self._overlay_canvas.master.wm_attributes('-fullscreen', True)
+		self._overlay_canvas.master.wm_attributes('-zoomed', False)
+		self._overlay_canvas.master.wm_attributes('-alpha', 0.5)
+		self._overlay_canvas.create_rectangle(0, 0, screen_width, screen_height, fill='black')
+		self._overlay_canvas.bind('<Button-1>', self._close_callback)
+		self._overlay_canvas.pack()
+
+		self._overlay_canvas.mainloop()
+
+	def _close_callback(self):
+		self._tkinter_root.destroy()
