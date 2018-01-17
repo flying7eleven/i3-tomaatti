@@ -10,8 +10,7 @@
 
 
 class ScreenOverlay(object):
-	@staticmethod
-	def is_coposite_manager_running():
+	def is_coposite_manager_running(self):
 		from subprocess import Popen, PIPE
 		child = Popen(['pgrep', 'xcompmgr'], stdout=PIPE)
 		child.communicate()
@@ -20,20 +19,25 @@ class ScreenOverlay(object):
 		else:
 			return False
 
-	@staticmethod
-	def show_overlay():
-		from tkinter import Canvas
+	def show_overlay(self):
+		from tkinter import Canvas, Tk
 
-		vsize = vw, vh = 600, 350
+		vw, vh = 600, 350
 
-		w = Canvas(width=vw, height=vh, highlightthickness=0)
-		w.configure(background='black')
-		w.master.overrideredirect(True)
-		w.master.geometry('+0+0')
-		w.master.lift()
-		w.master.wm_attributes('-topmost', True)
-		w.master.wm_attributes('-fullscreen', False)
-		w.master.wm_attributes('-alpha', 0.5)
-		w.create_rectangle(0, 0, vw, vh, fill='black')
-		w.pack()
-		w.mainloop()
+		self.root = Tk()
+		self.w = Canvas(width=vw, height=vh, highlightthickness=0)
+		self.w.configure(background='black')
+		self.w.master.overrideredirect(True)
+		self.w.master.geometry('+0+0')
+		self.w.master.lift()
+		self.w.master.wm_attributes('-topmost', True)
+		self.w.master.wm_attributes('-fullscreen', True)
+		self.w.master.wm_attributes('-zoomed', True)
+		self.w.master.wm_attributes('-alpha', 0.5)
+		self.w.create_rectangle(0, 0, vw, vh, fill='black')
+		self.w.bind('<Button-1>', self._close_callback)
+		self.w.pack()
+		self.w.mainloop()
+
+	def _close_callback(self, event):
+		self.root.destroy()
