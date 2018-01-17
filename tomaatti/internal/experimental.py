@@ -47,5 +47,5 @@ class ScreenOverlay(object):
 
 		self._overlay_canvas.mainloop()
 
-	def _close_callback(self):
+	def _close_callback(self, event):
 		self._tkinter_root.destroy()
