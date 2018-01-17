@@ -21,8 +21,11 @@ def script_entry_point():
 
 	# show the experimental screen overlay if the user requested it
 	if parsed_arguments.screen_overlay:
-		print('Showing screen overlay')
-		ScreenOverlay.show_overlay()
+		if ScreenOverlay.is_coposite_manager_running():
+			print('Showing screen overlay')
+			ScreenOverlay.show_overlay()
+		else:
+			print('Composite manager is not running!')
 		return
 
 	# get an instance of the main class
