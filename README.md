@@ -10,6 +10,9 @@ TODO
 * i3blocks (`sudo apt install i3blocks`)
 * Tkinter (`sudo apt install python3-tk`)
 
+#### Optional requirements
+* Xcompmgr for transparent overlays (`sudo apt install xcompmgr`)
+
 ### Package installation
 Tomaatti is distributed through PyPI (the Python Package Index). For installing it, just
 type ```sudo pip install tomaatti``` for installing it globally or ```pip install tomaatti --prefix ~/.local```
