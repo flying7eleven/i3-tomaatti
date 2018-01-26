@@ -23,6 +23,10 @@ dist/
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 
+# Files with platform stuff
+.idea/i3-tomaatti.iml
+.idea/misc.xml
+
 # File-based project format:
 *.iws
 
