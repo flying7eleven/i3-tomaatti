@@ -8,7 +8,7 @@
 #
 # You should have received a copy of the GNU General Public License along with this program. If not,
 # see <http://www.gnu.org/licenses/>.
-
+from tomaatti import ScreenOverlay
 from .confighelper import ConfigHelper
 from .timertype import TimerType
 
@@ -77,6 +77,10 @@ class Tomaatti(object):
 		self._persist_current_state()
 
 	@property
+	def use_expermental_overlay(self):
+		return self._application_config.get('experimental', 'overlay', False)
+
+	@property
 	def end_time(self) -> str:
 		from datetime import datetime
 		return self._application_config.get('timer', 'end_time', fallback=str(datetime.now()))
@@ -122,8 +126,12 @@ class Tomaatti(object):
 		self._persist_current_state()
 
 	def show_message(self, message: str) -> None:
-		from easygui import msgbox
-		msgbox(message, Tomaatti.translate_string('Tomaatti'))
+		if not self.use_expermental_overlay:
+			from easygui import msgbox
+			msgbox(message, Tomaatti.translate_string('Tomaatti'))
+		else:
+			overlay = ScreenOverlay()
+			overlay.show_overlay(message)
 
 	def _persist_current_state(self) -> None:
 		with open(self._config_app_state, 'w') as configfile:
