@@ -78,7 +78,7 @@ class Tomaatti(object):
 
 	@property
 	def use_expermental_overlay(self):
-		return self._application_config.get('experimental', 'overlay', False)
+		return self._application_config.getboolean('experimental', 'overlay', fallback=False)
 
 	@property
 	def end_time(self) -> str:
