@@ -1,4 +1,4 @@
 #!/bin/bash
-PYTHONPATH=`pwd`:$PYTHONPATH
+PYTHONPATH=`pwd`:`pwd`/tomaatti:$PYTHONPATH
 echo "PYTHONPATH: $PYTHONPATH"
 python3 -m unittest discover -s ./tests -v -p '*.py'
