@@ -9,8 +9,8 @@
 # You should have received a copy of the GNU General Public License along with this program. If not,
 # see <http://www.gnu.org/licenses/>.
 
-from .timertype import TimerType
 from .confighelper import ConfigHelper
+from .timertype import TimerType
 
 
 class Tomaatti(object):
@@ -98,7 +98,7 @@ class Tomaatti(object):
 		if not self.is_running:
 			return '{}{}'.format(prefix, self.translate_string('Tomaatti'))
 		else:
-			from datetime import datetime, time
+			from datetime import datetime
 			time_to_end = datetime.strptime(self.end_time, '%Y-%m-%d %H:%M:%S') - datetime.now()
 			return '{}{:02}:{:02}'.format(prefix, time_to_end.seconds % 3600 // 60, time_to_end.seconds % 60)
 
