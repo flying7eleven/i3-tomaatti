@@ -12,7 +12,7 @@
 from unittest import TestCase
 from unittest.mock import patch, MagicMock, call
 
-from tomaatti.internal.tomaatti import Tomaatti
+from tomaatti.internal.tomaatti import Tomaatti, TimerType
 
 
 class TomaattiTest(TestCase):
@@ -30,6 +30,11 @@ class TomaattiTest(TestCase):
 		test_object.initialize(config_mock)
 
 		config_mock.add_section.assert_has_calls([call('timer'), call('ui'), call('periods')], any_order=True)
+		config_mock.assert_has_calls([
+			call.set('timer', 'mode', str(TimerType.WORKING.value[0])),
+			call.set('periods', 'working', '25'),
+			call.set('periods', 'break', '5')],
+			any_order=True)
 
 	@patch('os.path.exists')
 	def testReadConfigIfItExists(self, patch_exists):
