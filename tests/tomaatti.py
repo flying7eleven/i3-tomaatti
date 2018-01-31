@@ -9,6 +9,7 @@
 # You should have received a copy of the GNU General Public License along with this program. If not,
 # see <http://www.gnu.org/licenses/>.
 
+from os.path import expanduser, join
 from unittest import TestCase
 from unittest.mock import patch, MagicMock, call
 
@@ -45,4 +46,5 @@ class TomaattiTest(TestCase):
 		test_object.initialize(MagicMock())
 
 		test_object._create_initial_config.assert_not_called()
-		test_object._application_config.read.assert_called()
+		test_object._application_config.read.assert_called_once_with(
+			join(expanduser('~/.config/tomaatti'), 'application_state.ini'))
