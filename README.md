@@ -62,3 +62,7 @@ for_window [title="(?i)tomaatti" class="(?i)tk"] floating enable move position c
 ### The warning that a period ended will just show up if I am on a screen with a i3bar
 If the i3 bar is not visible, the widgets are not triggered. The way the timer is currently implemented there is no way in showing
 that the period ended without a query from the i3 bar itself.
+
+### The full screen overlay is not transparent and just a black box
+If there is no composite manager running, it is not possible to show a transparent image. Either you have to install and start a composite
+manager or disable the fullscreen overlay.
