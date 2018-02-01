@@ -30,7 +30,7 @@ class TomaattiTest(TestCase):
 		test_object._persist_current_state = MagicMock()
 		test_object.initialize(config_mock)
 
-		config_mock.add_section.assert_has_calls([call('timer'), call('ui'), call('periods')], any_order=True)
+		config_mock.add_section.assert_has_calls([call('timer'), call('ui'), call('periods'), call('experimental')], any_order=True)
 		config_mock.assert_has_calls([
 			call.set('timer', 'mode', str(TimerType.WORKING.value[0])),
 			call.set('periods', 'working', '25'),

@@ -167,6 +167,7 @@ class Tomaatti(object):
 	def _create_initial_config(self):
 		self._application_config.add_section('timer')
 		self._application_config.add_section('periods')
+		self._application_config.add_section('experimental')
 		self._application_config.add_section('ui')
 		self.current_timer_type = TimerType.WORKING
 		self.working_period = 25
