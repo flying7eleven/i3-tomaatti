@@ -1,4 +1,4 @@
-# Tomaatti for i3 [![Build Status](https://travis-ci.org/thuetz/i3-tomaatti.svg?branch=master)](https://travis-ci.org/thuetz/i3-tomaatti)
+# Tomaatti for i3 [![Build Status](https://travis-ci.org/thuetz/i3-tomaatti.svg?branch=master)](https://travis-ci.org/thuetz/i3-tomaatti) [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 Tomaatti (Finnish for Tomato / Pomodoro) is a Pomodoro timer which can be integrated into your
 regular i3 setup.
 
