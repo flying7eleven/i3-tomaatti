@@ -8,7 +8,7 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  python3 setup.py test
-  python3 setup.py install --prefix ~/.local
-  python3 ~/.local/bin/tomaatti
-  python3 ~/.local/bin/tomaatti_config
+  - python3 setup.py test
+  - python3 setup.py install --prefix ~/.local
+  - python3 ~/.local/bin/tomaatti
+  - python3 ~/.local/bin/tomaatti_config
