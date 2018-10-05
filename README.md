@@ -5,6 +5,11 @@ regular i3 setup.
 ## Installation
 TODO
 
+### Installation while developing (not for productional use)
+```shell
+python3 setup.py install --prefix ~/.local
+```
+
 ### Requirements
 * python 3 (`sudo apt install python3`)
 * i3blocks (`sudo apt install i3blocks`)
