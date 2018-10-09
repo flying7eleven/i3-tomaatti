@@ -16,6 +16,7 @@ __all__ = [
 	'ConfigHelper',
 	'Tomaatti',
 	'ScreenOverlay',
+	'Configuration',
 ]
 
 from .internal.confighelper import ConfigHelper
@@ -24,3 +25,4 @@ from .internal.i3buttonidentifier import I3ButtonIdentifier
 from .internal.i3integration import I3Integration
 from .internal.timertype import TimerType
 from .internal.tomaatti import Tomaatti
+from .internal.configuration import Configuration
