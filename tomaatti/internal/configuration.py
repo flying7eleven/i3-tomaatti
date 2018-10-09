@@ -45,12 +45,12 @@ class Configuration(object):
 		self._application_config.add_section('ui')
 
 		# assign the default values to the configuration sections
-		self._application_config.set('timer', 'mode', TimerType.WORKING)
+		self._application_config.set('timer', 'mode', str(TimerType.WORKING))
 		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(False))
 		self._application_config.set('timer', 'end_time', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
-		self._application_config.set('periods', 'working', 25)
-		self._application_config.set('periods', 'break', 5)
+		self._application_config.set('periods', 'working', '25')
+		self._application_config.set('periods', 'break', '5')
 
 		self._application_config.set('ui', 'fontawesome', ConfigHelper.bool_to_config_str(False))
 
