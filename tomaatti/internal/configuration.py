@@ -33,10 +33,9 @@ class Configuration(object):
 			self._application_config = configuration_parser
 		else:
 			self._application_config = ConfigParser()
+			self._create_initial_config()
 		if exists(self._config_app_state):
 			self._application_config.read(self._config_app_state)
-		else:
-			self._create_initial_config()
 
 	def _create_initial_config(self):
 		# create the sections for the confiugration
