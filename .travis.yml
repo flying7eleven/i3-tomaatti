@@ -15,3 +15,7 @@ script:
   - python3 setup.py install
   - tomaatti
   - tomaatti_config
+  - BLOCK_BUTTON=1 tomaatti
+  - BLOCK_BUTTON=2 tomaatti
+  - BLOCK_BUTTON=3 tomaatti
+  - BLOCK_BUTTON=1 tomaatti
