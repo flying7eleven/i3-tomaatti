@@ -72,16 +72,16 @@ class Tomaatti(object):
 	def check_state(self):
 		if self._config.is_running and self.is_timer_up:
 			self.toggle_timer()
-			if TimerType.WORKING == self.current_timer_type:
+			if TimerType.WORKING == self._config.mode:
 				self.show_message(self.translate_string(
 					"It's time for a break. You worked so hard for the last %d minutes :)" % self._config.work_duration))
-				self.current_timer_type = TimerType.BREAK
-			elif TimerType.BREAK == self.current_timer_type:
+				self._config.mode = TimerType.BREAK
+			elif TimerType.BREAK == self._config.mode:
 				self.show_message(self.translate_string(
 					"You had %d minutes of break. Time to start working again!" % self._config.break_duration))
-				self.current_timer_type = TimerType.WORKING
+				self._config.mode = TimerType.WORKING
 			else:
-				self.show_message(self.translate_string('ERROR: %s') % str(self.current_timer_type))
+				self.show_message(self.translate_string('ERROR: %s') % str(self._config.mode))
 			self.toggle_timer()
 
 	def switch_mode(self):
@@ -89,9 +89,9 @@ class Tomaatti(object):
 		if self._config.is_running:
 			self.toggle_timer()
 			was_running = True
-		if TimerType.WORKING == self.current_timer_type:
-			self.current_timer_type = TimerType.BREAK
+		if TimerType.WORKING == self._config.mode:
+			self._config.mode = TimerType.BREAK
 		else:
-			self.current_timer_type = TimerType.WORKING
+			self._config.mode = TimerType.WORKING
 		if was_running:
 			self.toggle_timer()
