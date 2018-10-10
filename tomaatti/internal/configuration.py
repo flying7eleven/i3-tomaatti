@@ -59,7 +59,7 @@ class Configuration(object):
 
 	@property
 	def mode(self) -> TimerType:
-		return TimerType(self._application_config.get('timer', 'mode'))
+		return TimerType(self._application_config.getint('timer', 'mode'))
 
 	@property
 	def is_running(self) -> bool:
@@ -67,7 +67,7 @@ class Configuration(object):
 
 	@property
 	def end_time(self) -> datetime:
-		return datetime.strptime(self._application_config.getboolean('timer', 'end_time'), '%Y-%m-%d %H:%M:%S')
+		return datetime.strptime(self._application_config.get('timer', 'end_time'), '%Y-%m-%d %H:%M:%S')
 
 	@property
 	def work_duration(self) -> int:
