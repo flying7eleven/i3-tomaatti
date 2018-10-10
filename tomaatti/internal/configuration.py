@@ -61,13 +61,25 @@ class Configuration(object):
 	def mode(self) -> TimerType:
 		return TimerType(self._application_config.getint('timer', 'mode'))
 
+	@mode.setter
+	def mode(self, value: TimerType):
+		self._application_config.set('timer', 'mode', str(value))
+
 	@property
 	def is_running(self) -> bool:
 		return self._application_config.getboolean('timer', 'is_running')
 
+	@is_running.setter
+	def is_running(self, value: bool):
+		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(value))
+
 	@property
 	def end_time(self) -> datetime:
 		return datetime.strptime(self._application_config.get('timer', 'end_time'), '%Y-%m-%d %H:%M:%S')
+
+	@end_time.setter
+	def end_time(self, value: datetime):
+		self._application_config.set('timer', 'end_time', value.strftime('%Y-%m-%d %H:%M:%S'))
 
 	@property
 	def work_duration(self) -> int:
