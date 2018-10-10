@@ -55,7 +55,7 @@ class Tomaatti(object):
 		if self._config.is_running:
 			current_time = datetime.now()
 			period = self._config.work_duration
-			if TimerType.BREAK == self.current_timer_type:
+			if TimerType.BREAK == self._config.mode:
 				period = self._config.break_duration
 			time_period = timedelta(minutes=period)
 			end_time = current_time + time_period
