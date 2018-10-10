@@ -64,6 +64,7 @@ class Configuration(object):
 	@mode.setter
 	def mode(self, value: TimerType):
 		self._application_config.set('timer', 'mode', str(value))
+		self._persist_current_state()
 
 	@property
 	def is_running(self) -> bool:
@@ -72,6 +73,7 @@ class Configuration(object):
 	@is_running.setter
 	def is_running(self, value: bool):
 		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(value))
+		self._persist_current_state()
 
 	@property
 	def end_time(self) -> datetime:
@@ -80,6 +82,7 @@ class Configuration(object):
 	@end_time.setter
 	def end_time(self, value: datetime):
 		self._application_config.set('timer', 'end_time', value.strftime('%Y-%m-%d %H:%M:%S'))
+		self._persist_current_state()
 
 	@property
 	def work_duration(self) -> int:
