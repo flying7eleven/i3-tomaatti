@@ -37,7 +37,7 @@ class Configuration(object):
 		if exists(self._config_app_state):
 			self._application_config.read(self._config_app_state)
 
-	def _create_initial_config(self):
+	def _create_initial_config(self) -> None:
 		# create the sections for the confiugration
 		self._application_config.add_section('timer')
 		self._application_config.add_section('periods')
@@ -62,7 +62,7 @@ class Configuration(object):
 		return TimerType(self._application_config.getint('timer', 'mode'))
 
 	@mode.setter
-	def mode(self, value: TimerType):
+	def mode(self, value: TimerType) -> None:
 		self._application_config.set('timer', 'mode', str(value))
 		self._persist_current_state()
 
@@ -71,7 +71,7 @@ class Configuration(object):
 		return self._application_config.getboolean('timer', 'is_running')
 
 	@is_running.setter
-	def is_running(self, value: bool):
+	def is_running(self, value: bool) -> None:
 		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(value))
 		self._persist_current_state()
 
@@ -80,7 +80,7 @@ class Configuration(object):
 		return datetime.strptime(self._application_config.get('timer', 'end_time'), '%Y-%m-%d %H:%M:%S')
 
 	@end_time.setter
-	def end_time(self, value: datetime):
+	def end_time(self, value: datetime) -> None:
 		self._application_config.set('timer', 'end_time', value.strftime('%Y-%m-%d %H:%M:%S'))
 		self._persist_current_state()
 
