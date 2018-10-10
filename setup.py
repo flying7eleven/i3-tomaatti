@@ -41,7 +41,6 @@ setup(
 	entry_points={
 		'console_scripts': [
 			'tomaatti = tomaatti.cli:script_entry_point',
-			'tomaatti_config = tomaatti.cli_config:script_entry_point',
 		],
 	}
 )
