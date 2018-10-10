@@ -1,1 +1,6 @@
+# actual dependencies of the project
 easygui
+
+# stuff required for build and distributing
+twine
+wheel
