@@ -63,7 +63,7 @@ class Configuration(object):
 
 	@mode.setter
 	def mode(self, value: TimerType) -> None:
-		self._application_config.set('timer', 'mode', str(value))
+		self._application_config.set('timer', 'mode', str(value.value))
 		self._persist_current_state()
 
 	@property
