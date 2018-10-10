@@ -57,6 +57,38 @@ class Configuration(object):
 		self._application_config.set('experimental', 'overlay', ConfigHelper.bool_to_config_str(False))
 		self._application_config.set('experimental', 'blur', ConfigHelper.bool_to_config_str(False))
 
+	@property
+	def mode(self) -> TimerType:
+		return TimerType(self._application_config.get('timer', 'mode'))
+
+	@property
+	def is_running(self) -> bool:
+		return self._application_config.getboolean('timer', 'is_running')
+
+	@property
+	def end_time(self) -> datetime:
+		return datetime.strptime(self._application_config.getboolean('timer', 'end_time'), '%Y-%m-%d %H:%M:%S')
+
+	@property
+	def work_duration(self) -> int:
+		return self._application_config.getint('periods', 'working')
+
+	@property
+	def break_duration(self) -> int:
+		return self._application_config.getint('periods', 'break')
+
+	@property
+	def use_fontawesome(self) -> bool:
+		return self._application_config.getboolean('ui', 'fontawesome')
+
+	@property
+	def use_overlay(self) -> bool:
+		return self._application_config.getboolean('experimental', 'overlay')
+
+	@property
+	def use_blur(self) -> bool:
+		return self._application_config.getboolean('experimental', 'blur')
+
 	def _persist_current_state(self) -> None:
 		with open(self._config_app_state, 'w') as configfile:
 			self._application_config.write(configfile)
