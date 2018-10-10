@@ -59,7 +59,7 @@ class Tomaatti(object):
 				period = self._config.break_duration
 			time_period = timedelta(minutes=period)
 			end_time = current_time + time_period
-			self._config = end_time
+			self._config.end_time = end_time
 
 	def show_message(self, message: str) -> None:
 		if not self._config.use_overlay:
