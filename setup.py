@@ -13,7 +13,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name='tomaatti',
-	version='0.4.0',
+	version='0.5.0',
 	description='Pomodoro timer with i3 integration',
 	long_description='Pomodoro timer with i3 integration',
 	url='https://github.com/thuetz/i3-tomaatti',
