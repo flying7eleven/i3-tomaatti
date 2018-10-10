@@ -45,7 +45,7 @@ class Configuration(object):
 		self._application_config.add_section('ui')
 
 		# assign the default values to the configuration sections
-		self._application_config.set('timer', 'mode', str(TimerType.WORKING))
+		self._application_config.set('timer', 'mode', str(TimerType.WORKING.value))
 		self._application_config.set('timer', 'is_running', ConfigHelper.bool_to_config_str(False))
 		self._application_config.set('timer', 'end_time', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
