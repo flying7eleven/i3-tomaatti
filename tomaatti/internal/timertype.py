@@ -9,10 +9,10 @@
 # You should have received a copy of the GNU General Public License along with this program. If not,
 # see <http://www.gnu.org/licenses/>.
 
-from enum import Enum
+from enum import IntEnum
 
 
-class TimerType(Enum):
+class TimerType(IntEnum):
 	WORKING = 1,
 	BREAK = 2,
 	UNKNOWN = -1
